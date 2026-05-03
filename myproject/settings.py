@@ -4,17 +4,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-z6xan@t$*(^3*%xycv+c87xiyohqx^%mbkqhlh1ddm91c=iav@'
 
-# 🚨 IMPORTANT: MUST be False in production (Render)
 DEBUG = False
 
+# 🚀 IMPORTANT: Railway + Netlify safe config
 ALLOWED_HOSTS = [
-    "django-task-ufol.onrender.com",
-    "localhost",
-    "127.0.0.1",
+    "*"
 ]
 
 # ========================
-# APPLICATIONS
+# APPS
 # ========================
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -24,11 +22,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    # third party
     'rest_framework',
     'corsheaders',
 
-    # your app
     'firstapp',
 ]
 
@@ -36,7 +32,7 @@ INSTALLED_APPS = [
 # MIDDLEWARE
 # ========================
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',  # MUST be on top
+    'corsheaders.middleware.CorsMiddleware',  # MUST be first
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -66,7 +62,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'myproject.wsgi.application'
 
 # ========================
-# DATABASE (TEMP FIX FOR RENDER)
+# DATABASE (OK FOR LEARNING / PROJECT)
 # ========================
 DATABASES = {
     'default': {
@@ -76,31 +72,6 @@ DATABASES = {
 }
 
 # ========================
-# CORS CONFIG
+# CORS (IMPORTANT FOR REACT)
 # ========================
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173",
-]
-
-# ========================
-# PASSWORD VALIDATION
-# ========================
-AUTH_PASSWORD_VALIDATORS = [
-    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
-    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
-    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
-    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
-]
-
-# ========================
-# INTERNATIONALIZATION
-# ========================
-LANGUAGE_CODE = 'en-us'
-TIME_ZONE = 'UTC'
-USE_I18N = True
-USE_TZ = True
-
-# ========================
-# STATIC FILES
-# ========================
-STATIC_URL = 'static/'
+CORS_ALLOW_ALL_ORIGINS = True
